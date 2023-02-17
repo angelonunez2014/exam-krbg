@@ -1,0 +1,18 @@
+{
+    "tasks": [
+        {
+            "id": 1,
+            "label": "Kitchen Cleanup",
+            "description": "Clean my dirty kitchen",
+            "category": "house",
+            "endDate": null
+        },
+        {
+            "id": 2,
+            "label": "Taxes",
+            "description": "Start doing my taxes and contact my accountant jhon for advice",
+            "category": "bureaucracy",
+            "endDate": "2023-02-17"
+        }
+    ]
+}
