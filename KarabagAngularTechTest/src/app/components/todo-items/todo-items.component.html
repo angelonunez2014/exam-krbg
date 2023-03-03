@@ -1,0 +1,55 @@
+<div class="todo-items-container">
+  <div class="search-container px-4 pt-4 pb-2">
+    <div class="search-wrapper mb-3">
+      <div class="input-group">
+        <span class="input-group-text" id="basic-addon1">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0d6efd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </span>
+        <input [formControl]="search" type="text" class="form-control" placeholder="Search" >
+      </div>
+      <button class="btn btn-sm btn-clear" *ngIf="search.value" (click)="clear()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0d6efd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+  </div>
+  <ul class="list-group list-group-flush">
+    <ng-container *ngFor="let item of filtered$|async">
+      <li class="list-group-item">
+        <div class="view-mode">
+          <div class="d-flex align-items-center">
+            <div class="form-check d-inline-block" *ngIf="!todo.editingItems.includes(item.id)">
+              <input title="Mark As Done" class="form-check-input" type="checkbox" (change)="checked($event, item)">
+              <label class="form-check-label">{{item.label}}</label>
+            </div>
+            <button class="btn btn-sm ms-2" title="Edit" (click)="editItem(item.id)" *ngIf="!todo.editingItems.includes(item.id)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0094dd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="14 2 18 6 7 17 3 17 3 13 14 2"></polygon><line x1="3" y1="22" x2="21" y2="22"></line></svg>
+            </button>
+            <span class="btn-actions ms-auto d-flex align-items-center">
+              <button (click)="getDetails(item?.id)" class="btn btn-sm ms-2" title="Show Info" *ngIf="!todo.editingItems.includes(item.id)" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse'+item.id" aria-expanded="false" [attr.aria-controls]="'collapse'+item.id">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0d6efd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              </button>
+              <button (click)="deleteItem(item?.id)" class="btn btn-sm ms-2" title="Remove" *ngIf="!todo.editingItems.includes(item.id)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c3002f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </button>
+            </span>
+          </div>
+        </div>
+        <div class="collapse" [id]="'collapse'+item.id" >
+          <ng-container *ngIf="item.id as todoId">
+            <div class="card card-body" *ngIf="(details$|async) as details">
+              <p class="m-0"><strong>Label: </strong> {{ details[todoId] ? details[todoId].label : "" }}&nbsp;</p>
+              <p class="m-0"><strong>Description: </strong>{{ details[todoId] ? details[todoId].description : ""  }}&nbsp;</p>
+              <p class="m-0"><strong>End Date: </strong>{{ (details[todoId] ? details[todoId].endDate : "") | date:'medium' }}&nbsp;</p>
+            </div>
+          </ng-container>
+        </div>
+        <app-todo-form *ngIf="todo.editingItems.includes(item?.id)" [todoItem]="item"></app-todo-form>
+      </li>
+    </ng-container>
+    <ng-container *ngIf="!(filtered$|async)?.length && search">
+      <li class="list-group-item">
+        <p class="text-center pt-3">No records found!</p>
+      </li>
+    </ng-container>
+  </ul>
+</div>

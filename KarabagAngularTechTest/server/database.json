@@ -1,18 +1,28 @@
 {
-    "tasks": [
-        {
-            "id": 1,
-            "label": "Kitchen Cleanup",
-            "description": "Clean my dirty kitchen",
-            "category": "house",
-            "endDate": null
-        },
-        {
-            "id": 2,
-            "label": "Taxes",
-            "description": "Start doing my taxes and contact my accountant jhon for advice",
-            "category": "bureaucracy",
-            "endDate": "2023-02-17"
-        }
-    ]
+  "tasks": [
+    {
+      "id": 1,
+      "label": "Kitchen Cleanup",
+      "description": "Clean my dirty kitchen",
+      "category": "house",
+      "endDate": "2023-03-03T04:35:15.075Z",
+      "done": false
+    },
+    {
+      "id": 2,
+      "label": "Taxes",
+      "description": "Start doing my taxes and contact my accountant jhon for advice",
+      "category": "bureaucracy",
+      "endDate": "2023-03-03T04:35:33.439Z",
+      "done": false
+    },
+    {
+      "id": 1677816907734,
+      "done": true,
+      "endDate": "2023-03-03T04:15:07.734Z",
+      "label": "Wash the dishes",
+      "description": "Wash the dishes after lunch",
+      "category": "House"
+    }
+  ]
 }

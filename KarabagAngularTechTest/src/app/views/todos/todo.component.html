@@ -1,0 +1,49 @@
+<div class="todo-container-outer mt-3">
+  <h3 class="pb-3">Karabag Angular Test</h3>
+
+  <!-- Todo -->
+  <div class="todo-items-container mt-4">
+    <div class="collapsible-container">
+      <button class="btn btn-light w-100 text-left d-flex align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#todoCollapse" aria-expanded="true" aria-controls="todoCollapse">
+        <h4 class="m-0 p-2">
+          <span>Todo</span>
+          <small class="ms-2"><span class="badge bg-secondary">({{ todoCount$|async }})</span></small>
+        </h4>
+        <div class="collapse-indicator ms-auto">
+          <svg class="down-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          <svg class="up-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+        </div>
+      </button>
+    </div>
+    <div class="collapse show" id="todoCollapse">
+      <app-todo-items></app-todo-items>
+    </div>
+
+    <div class="add-container ps-3 mt-3">
+      <app-todo-form [todoItem]="todoTemp" *ngIf="showCreateForm" (closeForm)="hideForm()"></app-todo-form>
+      <button type="button" class="btn btn-primary rounded-pill" (click)="showForm()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+        <span>Add New</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Completed -->
+  <div class="completed-items-container mt-4">
+    <div class="collapsible-container">
+      <button class="btn btn-light w-100 text-left d-flex align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#completedCollapse" aria-expanded="false" aria-controls="completedCollapse">
+        <h4 class="m-0 p-2">
+          <span>Completed</span>
+          <small class="ms-2"><span class="badge bg-secondary">({{ completedCount$|async }})</span></small>
+        </h4>
+        <div class="collapse-indicator ms-auto">
+          <svg class="down-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          <svg class="up-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+        </div>
+      </button>
+    </div>
+    <div class="collapse" id="completedCollapse">
+      <app-completed-items></app-completed-items>
+    </div>
+  </div>
+</div>

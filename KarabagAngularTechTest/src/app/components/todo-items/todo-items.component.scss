@@ -1,0 +1,14 @@
+.search-container {
+  background-color: #fffbe6;
+}
+
+.search-wrapper {
+  position: relative;
+  .btn-clear{
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 35px;
+    z-index: 9999;
+  }
+}

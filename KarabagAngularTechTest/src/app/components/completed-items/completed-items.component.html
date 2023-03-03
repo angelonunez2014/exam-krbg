@@ -1,0 +1,16 @@
+<div class="completed-container">
+  <ul class="list-group list-group-flush">
+    <ng-container *ngFor="let item of completed$|async">
+      <li class="list-group-item">
+        <div class="view-mode">
+          <div class="d-flex align-items-center">
+            <div class="form-check d-inline-block">
+              <input class="form-check-input" type="checkbox" disabled checked>
+              <label class="form-check-label text-decoration-line-through">{{item.label}}</label>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ng-container>
+  </ul>
+</div>
